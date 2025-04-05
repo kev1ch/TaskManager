@@ -1,0 +1,3 @@
+insert into task (id, description, due_date, status, file_path) values (1, 'Upload changes to repository', '2025-06-15T10:15:30', 1, '/test');
+insert into task (id, description, due_date, status, file_path) values (2, 'Add more features', '2025-04-09T13:00:00', 1, '/test');
+insert into task (id, description, due_date, status, file_path) values (3, 'Refactor code', '2025-05-01T14:30:00', 1, '/test');
