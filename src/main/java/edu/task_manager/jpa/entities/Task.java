@@ -14,9 +14,15 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "description")
     private String description;
+    @Column(name = "due_date")
     private LocalDateTime dueDate;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "status")
     private TaskStatus status;
+    @Column(name = "file_path")
     private String filePath;
 
 }
