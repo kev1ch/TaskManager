@@ -1,6 +1,7 @@
 package edu.task_manager.jpa.repositories;
 
 import edu.task_manager.jpa.entities.Task;
+import edu.task_manager.jpa.entities.TaskStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,8 @@ public class TaskRepositoryTest {
     void getTaskById() {
         Optional<Task> result = taskRepository.findById(1L);
         assertNotNull(result);
-        // assertEquals(0, result.size());
+        Task task_result = result.get();
+        assertEquals("Upload changes to repository", task_result.getDescription());
+        assertEquals(TaskStatus.IN_PROGRESS, task_result.getStatus());
     }
 }
