@@ -1,24 +1,36 @@
 package edu.task_manager.controllers;
 
 import edu.task_manager.jpa.entities.Task;
+import edu.task_manager.jpa.repositories.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
 
+    @Autowired
+    TaskRepository taskRepository;
+
     @GetMapping("/")
     public ResponseEntity<List<Task>> getAllTasks() {
-        return new ResponseEntity<>(List.of(), HttpStatus.OK);
+        List<Task> task_list = taskRepository.findAll();
+        return new ResponseEntity<>(task_list, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> getTask(@PathVariable long id) {
-        return new ResponseEntity<>(new Task(), HttpStatus.OK);
+        Optional<Task> result = taskRepository.findById(1L);
+        if (result.isPresent()) {
+            return new ResponseEntity<>(result.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/{id}")
